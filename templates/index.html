@@ -1,1 +1,176 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIELI RH | Gestión de Personal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f7f4;
+            color: #26352c;
+        }
+
+        header {
+            background: #176b43;
+            color: white;
+            padding: 24px 7%;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        header p {
+            margin-top: 6px;
+            color: #d9f3e3;
+        }
+
+        .hero {
+            background: white;
+            text-align: center;
+            padding: 65px 7%;
+        }
+
+        .hero h2 {
+            color: #176b43;
+            font-size: 36px;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.7;
+            color: #657168;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .boton {
+            display: inline-block;
+            padding: 14px 22px;
+            background: #176b43;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .boton.secundario {
+            background: white;
+            color: #176b43;
+            border: 1px solid #176b43;
+        }
+
+        .seccion {
+            padding: 45px 7%;
+        }
+
+        .seccion h2 {
+            text-align: center;
+            color: #176b43;
+            margin-bottom: 28px;
+        }
+
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 20px;
+        }
+
+        .tarjeta {
+            background: white;
+            padding: 25px;
+            border: 1px solid #e0e9e2;
+            border-radius: 12px;
+        }
+
+        .tarjeta h3 {
+            color: #176b43;
+            margin-bottom: 12px;
+        }
+
+        .tarjeta p {
+            color: #657168;
+            line-height: 1.6;
+        }
+
+        footer {
+            background: #124d32;
+            color: white;
+            text-align: center;
+            padding: 22px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ARIELI RH</h1>
+    <p>Sistema de Gestión y Seguimiento de Personal</p>
+</header>
+
+<main>
+    <section class="hero">
+        <h2>Bienvenido a ARIELI RH</h2>
+        <p>
+            Administra el reclutamiento, el registro de candidatos,
+            el control documental y el seguimiento de las vacantes
+            desde una sola plataforma.
+        </p>
+
+        <div class="botones">
+            <a href="/registro" class="boton">Registrar candidato</a>
+            <a href="/vacante" class="boton secundario">Consultar vacantes</a>
+            <a href="/sistema" class="boton secundario">Panel de gestión</a>
+        </div>
+    </section>
+
+    <section class="seccion">
+        <h2>Funciones del sistema</h2>
+
+        <div class="tarjetas">
+            <article class="tarjeta">
+                <h3>Registro de candidatos</h3>
+                <p>Organiza la información de las personas interesadas en las vacantes.</p>
+            </article>
+
+            <article class="tarjeta">
+                <h3>Control documental</h3>
+                <p>Prepara el seguimiento de documentos recibidos, faltantes y pendientes.</p>
+            </article>
+
+            <article class="tarjeta">
+                <h3>Vacantes</h3>
+                <p>Consulta los puestos disponibles y da seguimiento al reclutamiento.</p>
+            </article>
+
+            <article class="tarjeta">
+                <h3>Evaluaciones</h3>
+                <p>Organiza las evaluaciones y el seguimiento de candidatos.</p>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer>
+    ARIELI RH · Gestión de Personal
+</footer>
+
+</body>
+</html>
+
