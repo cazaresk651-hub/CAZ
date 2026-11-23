@@ -1,1 +1,335 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vacantes | Proyectos Técnicos e Ingeniería Aplicada MP</title>
+  <style>
+    :root {
+      --verde: #176b3a;
+      --oscuro: #104a2a;
+      --crema: #f5f0df;
+      --papel: #fffdf6;
+      --texto: #233b2d;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      background: var(--crema);
+      color: var(--texto);
+    }
+
+    header {
+      background: var(--papel);
+      border-bottom: 3px solid var(--verde);
+      padding: 16px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .marca {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--oscuro);
+    }
+
+    .marca img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+    }
+
+    .marca strong {
+      display: block;
+      font-size: 19px;
+      letter-spacing: 1px;
+    }
+
+    .marca small {
+      display: block;
+      margin-top: 5px;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    .volver {
+      color: var(--oscuro);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .hero {
+      padding: 65px 8% 55px;
+      color: white;
+      background: linear-gradient(135deg, #104a2a, #23834a);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "MP";
+      position: absolute;
+      right: 7%;
+      bottom: -75px;
+      font-size: 220px;
+      font-weight: 900;
+      color: rgba(255,255,255,.06);
+      transform: rotate(-10deg);
+      pointer-events: none;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,.7);
+      padding: 8px 12px;
+      border-radius: 3px;
+      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 22px 0 15px;
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.05;
+    }
+
+    .hero p {
+      max-width: 650px;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .contenido {
+      max-width: 1180px;
+      margin: auto;
+      padding: 48px 24px 70px;
+    }
+
+    .encabezado-seccion {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .encabezado-seccion h2 {
+      color: var(--oscuro);
+      font-size: 32px;
+      margin: 0 0 8px;
+    }
+
+    .encabezado-seccion p { margin: 0; }
+
+    .tarjetas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 22px;
+    }
+
+    .tarjeta {
+      background: var(--papel);
+      border: 1px solid #d8d4c4;
+      border-top: 5px solid var(--verde);
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 5px 0 #ded8c6;
+      transition: transform .25s, box-shadow .25s;
+      animation: aparecer .65s both;
+    }
+
+    .tarjeta:nth-child(2) { animation-delay: .12s; }
+    .tarjeta:nth-child(3) { animation-delay: .24s; }
+
+    .tarjeta:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 12px 20px rgba(16,74,42,.13);
+    }
+
+    .icono {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      background: #e3efdf;
+      border-radius: 50%;
+      font-size: 27px;
+      margin-bottom: 18px;
+    }
+
+    .tarjeta h3 {
+      color: var(--oscuro);
+      font-size: 23px;
+      margin: 0 0 12px;
+    }
+
+    .tarjeta p {
+      line-height: 1.6;
+      min-height: 76px;
+    }
+
+    .requisito {
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--verde);
+      margin: 18px 0;
+    }
+
+    .boton {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 13px 16px;
+      background: var(--verde);
+      color: white;
+      border: 2px solid var(--verde);
+      border-radius: 4px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+
+    .boton:hover {
+      background: transparent;
+      color: var(--verde);
+    }
+
+    .aviso {
+      margin-top: 35px;
+      padding: 22px;
+      border-left: 5px solid #d0a94d;
+      background: #fff9e9;
+      line-height: 1.7;
+    }
+
+    footer {
+      padding: 28px 20px;
+      text-align: center;
+      background: var(--oscuro);
+      color: white;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a class="marca" href="{{ url_for('inicio') }}">
+      <img
+        src="{{ url_for('static', filename='imagenes/e7ab4b48-7499-438d-b918-1286469bfd97.png') }}"
+        alt="Logo de MP Proyectos">
+      <span>
+        <strong>MP PROYECTOS</strong>
+        <small>INGENIERÍA APLICADA</small>
+      </span>
+    </a>
+
+    <a class="volver" href="{{ url_for('inicio') }}">← Volver al inicio</a>
+  </header>
+
+  <section class="hero">
+    <span class="etiqueta">TALENTO · COMPROMISO · SEGURIDAD</span>
+    <h1>Tu próximo proyecto profesional comienza aquí.</h1>
+    <p>
+      En Proyectos Técnicos e Ingeniería Aplicada MP, S.A. de C.V.,
+      buscamos personas comprometidas con la seguridad, la calidad
+      y el trabajo en equipo. Conoce nuestras oportunidades laborales.
+    </p>
+  </section>
+
+  <main class="contenido">
+    <div class="encabezado-seccion">
+      <div>
+        <h2>Vacantes disponibles</h2>
+        <p>Selecciona el puesto de tu interés para iniciar tu solicitud.</p>
+      </div>
+    </div>
+
+    <section class="tarjetas">
+      <article class="tarjeta">
+        <div class="icono">⚡</div>
+        <h3>Ayudante Eléctrico</h3>
+        <p>
+          Apoyo en instalaciones eléctricas, preparación de materiales
+          y actividades de obra bajo supervisión.
+        </p>
+        <div class="requisito">Escolaridad mínima: secundaria terminada</div>
+        <a class="boton"
+           href="{{ url_for('registro') }}?puesto=Ayudante%20El%C3%A9ctrico">
+          Postularme
+        </a>
+      </article>
+
+      <article class="tarjeta">
+        <div class="icono">🔧</div>
+        <h3>Ayudante General</h3>
+        <p>
+          Apoyo en actividades operativas, orden del área de trabajo
+          y cumplimiento de instrucciones de seguridad.
+        </p>
+        <div class="requisito">Escolaridad mínima: secundaria terminada</div>
+        <a class="boton"
+           href="{{ url_for('registro') }}?puesto=Ayudante%20General">
+          Postularme
+        </a>
+      </article>
+
+      <article class="tarjeta">
+        <div class="icono">🛠️</div>
+        <h3>Ayudante Instrumentista</h3>
+        <p>
+          Apoyo en trabajos de instrumentación industrial, herramientas
+          y actividades asignadas por el personal responsable.
+        </p>
+        <div class="requisito">Disponibilidad para trabajo en campo</div>
+        <a class="boton"
+           href="{{ url_for('registro') }}?puesto=Ayudante%20Instrumentista">
+          Postularme
+        </a>
+      </article>
+    </section>
+
+    <div class="aviso">
+      <strong>¿Cómo funciona el proceso?</strong><br>
+      Primero completarás tu registro y evaluación inicial.
+      Después habilitaremos la carga segura de documentos y el seguimiento
+      de tu solicitud. El envío de una solicitud no garantiza la contratación.
+    </div>
+  </main>
+
+  <footer>
+    <strong>Proyectos Técnicos e Ingeniería Aplicada MP, S.A. de C.V.</strong><br>
+    Obra eléctrica y servicios complementarios de ingeniería aplicada.<br>
+    Minatitlán, Veracruz, México.
+  </footer>
+</body>
+</html>
+
