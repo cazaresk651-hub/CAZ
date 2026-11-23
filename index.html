@@ -1,13 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Proyectos Técnicos e Ingeniería Aplicada MP, S.A. de C.V.</title>
-
-  <meta name="description" content="Servicios de obra eléctrica, ingeniería aplicada y mantenimiento industrial en Veracruz. Conoce Proyectos Técnicos e Ingeniería Aplicada MP, S.A. de C.V.">
+  <meta name="description" content="Servicios de obra eléctrica, ingeniería aplicada y mantenimiento industrial en Veracruz.">
 
   <style>
     :root {
@@ -55,18 +52,10 @@
       gap: 20px;
     }
 
-    .logo {
-      color: var(--verde);
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    .logo small {
+    .logo img {
+      width: 170px;
+      height: auto;
       display: block;
-      color: #52645a;
-      font-size: 10px;
-      letter-spacing: 1.5px;
     }
 
     nav {
@@ -127,6 +116,9 @@
       font-weight: bold;
       margin: 5px 8px 5px 0;
       transition: 0.2s;
+      border: 0;
+      cursor: pointer;
+      font-size: 15px;
     }
 
     .boton:hover {
@@ -136,6 +128,11 @@
 
     .boton-verde {
       background: var(--verde);
+      color: white;
+    }
+
+    .boton-verde:hover {
+      background: var(--verde-oscuro);
       color: white;
     }
 
@@ -202,13 +199,15 @@
       letter-spacing: 2px;
     }
 
-    .tarjeta h3 {
+    .tarjeta h3,
+    .tarjeta-vacante h3 {
       color: var(--verde-oscuro);
       font-size: 19px;
       margin: 12px 0;
     }
 
-    .tarjeta p {
+    .tarjeta p,
+    .tarjeta-vacante p {
       color: #58645c;
       font-size: 14px;
     }
@@ -227,15 +226,91 @@
       background: var(--verde-claro);
     }
 
-    .vacantes {
-      background: var(--verde-claro);
-      border-left: 5px solid var(--verde);
-      padding: 35px;
-      border-radius: 6px;
+    .lista-vacantes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 30px;
     }
 
-    .vacantes p {
-      margin: 12px 0 22px;
+    .tarjeta-vacante {
+      background: white;
+      border: 1px solid #dce5df;
+      border-radius: 10px;
+      padding: 25px;
+    }
+
+    .tarjeta-vacante p {
+      margin: 7px 0;
+    }
+
+    .nota {
+      background: var(--verde-claro);
+      border-left: 5px solid var(--verde);
+      padding: 20px;
+      border-radius: 6px;
+      margin-top: 28px;
+    }
+
+    .formulario {
+      background: white;
+      border: 1px solid #dce5df;
+      border-radius: 10px;
+      padding: 30px;
+      margin-top: 28px;
+      box-shadow: 0 5px 18px rgba(20, 60, 35, 0.04);
+    }
+
+    .campos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .campo {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .campo.completo {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 14px;
+      color: var(--verde-oscuro);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd7ce;
+      border-radius: 5px;
+      font: inherit;
+      background: white;
+      color: var(--texto);
+    }
+
+    input[type="file"] {
+      padding: 9px;
+    }
+
+    input[type="checkbox"] {
+      width: auto;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .ayuda {
+      font-size: 12px;
+      color: #68766d;
     }
 
     .contacto {
@@ -278,10 +353,7 @@
         grid-template-columns: 1fr;
       }
 
-      .servicios {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
+      .servicios,
       .galeria {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -289,7 +361,9 @@
 
     @media (max-width: 520px) {
       .servicios,
-      .galeria {
+      .galeria,
+      .lista-vacantes,
+      .campos {
         grid-template-columns: 1fr;
       }
 
@@ -297,8 +371,9 @@
         font-size: 27px;
       }
 
-      .tarjeta {
-        padding: 22px;
+      .tarjeta,
+      .formulario {
+        padding: 20px;
       }
     }
   </style>
@@ -306,301 +381,442 @@
 
 <body>
 
-  <header>
-    <div class="barra">
-     
-<a class="logo" href="#inicio">
-  <img
-    src="static/imagenes/e7ab4b48-7499-438d-b918-1286469bfd97.png"
-    alt="Logo de Proyectos Técnicos e Ingeniería Aplicada MP"
-    style="width: 170px; height: auto; display: block;"
-  >
-</a>
-      <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#galeria">Proyectos</a>
-        <a href="#vacantes">Vacantes</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
+<header>
+  <div class="barra">
+    <a class="logo" href="#inicio" aria-label="Inicio">
+      <img
+        src="static/imagenes/e7ab4b48-7499-438d-b918-1286469bfd97.png"
+        alt="Logo de Proyectos Técnicos e Ingeniería Aplicada MP"
+      >
+    </a>
+
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#galeria">Proyectos</a>
+      <a href="#vacantes">Vacantes</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="portada" id="inicio">
+    <div class="portada-contenido">
+      <span class="etiqueta">Ingeniería · Seguridad · Calidad</span>
+
+      <h1>Soluciones de ingeniería para la industria</h1>
+
+      <p>
+        Especialistas en obra eléctrica y servicios complementarios de
+        ingeniería aplicada y mantenimiento industrial. Trabajamos con
+        compromiso, seguridad y calidad en cada proyecto.
+      </p>
+
+      <a class="boton" href="#servicios">Conoce nuestros servicios</a>
+      <a class="boton" href="#contacto">Contáctanos</a>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="portada" id="inicio">
-      <div class="portada-contenido">
-        <span class="etiqueta">Ingeniería · Seguridad · Calidad</span>
-
-        <h1>Soluciones de ingeniería para la industria</h1>
+  <section class="seccion" id="nosotros">
+    <div class="contenedor nosotros">
+      <div>
+        <h2 class="titulo">¿Quiénes somos?</h2>
 
         <p>
-          Especialistas en obra eléctrica y servicios complementarios
-          de ingeniería aplicada y mantenimiento industrial.
-          Trabajamos con compromiso, seguridad y calidad en cada proyecto.
+          <strong>Proyectos Técnicos e Ingeniería Aplicada MP, S.A. de C.V.</strong>
+          es una empresa orientada a la ejecución de trabajos de obra eléctrica
+          y al desarrollo de soluciones para el sector industrial.
         </p>
 
-        <a class="boton" href="#servicios">Conoce nuestros servicios</a>
-        <a class="boton" href="#contacto">Contáctanos</a>
+        <p style="margin-top: 15px;">
+          Complementamos nuestros servicios con actividades de mantenimiento,
+          instrumentación y apoyo técnico, priorizando la seguridad del
+          personal, la calidad del trabajo y el cumplimiento de los objetivos
+          de cada proyecto.
+        </p>
       </div>
-    </section>
 
-    <section class="seccion" id="nosotros">
-      <div class="contenedor nosotros">
-        <div>
-          <h2 class="titulo">¿Quiénes somos?</h2>
+      <img
+        class="foto-principal"
+        src="static/imagenes/432bc0b3-dfae-4790-9c12-d410618fc7e4.png"
+        alt="Trabajo técnico de la empresa"
+      >
+    </div>
+  </section>
 
+  <section class="seccion fondo-gris" id="servicios">
+    <div class="contenedor">
+      <h2 class="titulo">Nuestros servicios</h2>
+
+      <p class="introduccion">
+        Soluciones técnicas orientadas a las necesidades de la industria,
+        con énfasis en la obra eléctrica.
+      </p>
+
+      <div class="servicios">
+
+        <article class="tarjeta">
+          <span class="numero">01 / PRINCIPAL</span>
+          <h3>Obra eléctrica</h3>
           <p>
-            <strong>Proyectos Técnicos e Ingeniería Aplicada MP, S.A. de C.V.</strong>
-            es una empresa orientada a la ejecución de trabajos de obra
-            eléctrica y al desarrollo de soluciones para el sector industrial.
+            Ejecución de trabajos e instalaciones eléctricas industriales,
+            mantenimiento y apoyo técnico en campo.
           </p>
+        </article>
 
-          <p style="margin-top: 15px;">
-            Complementamos nuestros servicios con actividades de mantenimiento,
-            instrumentación y apoyo técnico, priorizando la seguridad del
-            personal, la calidad del trabajo y el cumplimiento de los objetivos
-            de cada proyecto.
+        <article class="tarjeta">
+          <span class="numero">02</span>
+          <h3>Mantenimiento industrial</h3>
+          <p>
+            Servicios de mantenimiento y apoyo en actividades para conservar
+            la operación de equipos e instalaciones.
           </p>
-        </div>
+        </article>
+
+        <article class="tarjeta">
+          <span class="numero">03</span>
+          <h3>Instrumentación</h3>
+          <p>
+            Apoyo técnico en actividades relacionadas con instrumentos
+            y sistemas de control industrial.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="numero">04</span>
+          <h3>Sistemas de puesta a tierra</h3>
+          <p>
+            Actividades de revisión, medición y mantenimiento de sistemas
+            de puesta a tierra, de acuerdo con el alcance contratado.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="numero">05</span>
+          <h3>Seguridad industrial</h3>
+          <p>
+            Apoyo a la planeación segura de los trabajos y a la
+            identificación de riesgos en las actividades operativas.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="numero">06</span>
+          <h3>Ingeniería aplicada</h3>
+          <p>
+            Apoyo técnico y soluciones complementarias para proyectos
+            y necesidades del sector industrial.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="galeria">
+    <div class="contenedor">
+      <h2 class="titulo">Nuestro trabajo</h2>
+
+      <p class="introduccion">
+        Conoce parte de las actividades técnicas que realizamos
+        en proyectos industriales.
+      </p>
+
+      <div class="galeria">
 
         <img
-          class="foto-principal"
-          src="./static/imagenes/432bc0b3-dfae-4790-9c12-d410618fc7e4.png"
-          alt="Trabajo técnico de Proyectos Técnicos e Ingeniería Aplicada MP"
+          class="foto-galeria"
+          src="static/imagenes/432bc0b3-dfae-4790-9c12-d410618fc7e4.png"
+          alt="Actividad técnica de obra eléctrica"
         >
-      </div>
-    </section>
 
-    <section class="seccion fondo-gris" id="servicios">
-      <div class="contenedor">
-        <h2 class="titulo">Nuestros servicios</h2>
-
-        <p class="introduccion">
-          Soluciones técnicas orientadas a las necesidades de la industria,
-          con énfasis en la obra eléctrica.
-        </p>
-
-        <div class="servicios">
-          <article class="tarjeta">
-            <span class="numero">01 / PRINCIPAL</span>
-            <h3>Obra eléctrica</h3>
-            <p>
-              Ejecución de trabajos e instalaciones eléctricas industriales,
-              mantenimiento y apoyo técnico en campo.
-            </p>
-          </article>
-
-          <article class="tarjeta">
-            <span class="numero">02</span>
-            <h3>Mantenimiento industrial</h3>
-            <p>
-              Servicios de mantenimiento y apoyo en actividades para
-              conservar la operación de equipos e instalaciones.
-            </p>
-          </article>
-
-          <article class="tarjeta">
-            <span class="numero">03</span>
-            <h3>Instrumentación</h3>
-            <p>
-              Apoyo técnico en actividades relacionadas con instrumentos
-              y sistemas de control industrial.
-            </p>
-          </article>
-
-          <article class="tarjeta">
-            <span class="numero">04</span>
-            <h3>Sistemas de puesta a tierra</h3>
-            <p>
-              Actividades de revisión, medición y mantenimiento de sistemas
-              de puesta a tierra, de acuerdo con el alcance contratado.
-            </p>
-          </article>
-
-          <article class="tarjeta">
-            <span class="numero">05</span>
-            <h3>Seguridad industrial</h3>
-            <p>
-              Apoyo a la planeación segura de los trabajos y a la
-              identificación de riesgos en las actividades operativas.
-            </p>
-          </article>
-
-          <article class="tarjeta">
-            <span class="numero">06</span>
-            <h3>Ingeniería aplicada</h3>
-            <p>
-              Apoyo técnico y soluciones complementarias para proyectos
-              y necesidades del sector industrial.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="seccion" id="galeria">
-      <div class="contenedor">
-        <h2 class="titulo">Nuestro trabajo</h2>
-
-        <p class="introduccion">
-          Conoce parte de las actividades técnicas que realizamos
-          en proyectos industriales.
-        </p>
-
-        <div class="galeria">
-          <img
-            class="foto-galeria"
-            src="./static/imagenes/432bc0b3-dfae-4790-9c12-d410618fc7e4.png"
-            alt="Actividad técnica de obra eléctrica"
-          >
-
-          <div class="tarjeta">
-            <span class="numero">EXPERIENCIA</span>
-            <h3>Trabajo en campo</h3>
-            <p>
-              Personal comprometido con la ejecución responsable de las
-              actividades y el cumplimiento de los objetivos del proyecto.
-            </p>
-          </div>
-
-          <div class="tarjeta">
-            <span class="numero">COMPROMISO</span>
-            <h3>Calidad y seguridad</h3>
-            <p>
-              Planeación, orden y atención a las medidas de seguridad
-              aplicables durante los trabajos.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-<section class="seccion fondo-gris" id="vacantes">
-  <div class="contenedor">
-    <h2 class="titulo">Vacantes y residencias profesionales</h2>
-    <p>
-      En Proyectos Técnicos e Ingeniería Aplicada MP, S.A. de C.V.,
-      buscamos personas comprometidas con la seguridad, la calidad
-      y el trabajo en equipo.
-    </p>
-
-    <div class="contenedor-vacantes">
-
-      <div class="tarjeta-vacante">
-        <h3>Ayudante Eléctrico</h3>
-        <p><strong>Área:</strong> Obra eléctrica</p>
-        <p><strong>Escolaridad:</strong> Secundaria terminada</p>
-        <a class="boton boton-verde"
-           href="#formulario-postulacion"
-           target="_blank">Solicitar información</a>
-      </div>
-
-      <div class="tarjeta-vacante">
-        <h3>Ayudante General</h3>
-        <p><strong>Área:</strong> Apoyo en obra</p>
-        <p><strong>Experiencia:</strong> 2 años</p>
-        <a class="boton boton-verde"
-           href="#formulario-postulacion"
-           target="_blank">Solicitar información</a>
-      </div>
-
-      <div class="tarjeta-vacante">
-        <h3>Ayudante Instrumentista</h3>
-        <p><strong>Área:</strong> Instrumentación industrial</p>
-        <p><strong>Escolaridad:</strong> Secundaria terminada</p>
-        <a class="boton boton-verde"
-           href="#formulario-postulacion"
-           target="_blank">Solicitar información</a>
-      </div>
-
-      <div class="tarjeta-vacante">
-        <h3>Residencias profesionales</h3>
-        <p><strong>Dirigido a:</strong> Estudiantes de ingeniería</p>
-        <p>Participa en proyectos y adquiere experiencia profesional.</p>
-        <a class="boton boton-verde"
-           href="#formulario-postulacion"
-           target="_blank">Solicitar información</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-      <div class="contenedor">
-        <div class="vacantes">
-          <h2 class="titulo">Forma parte de nuestro equipo</h2>
-
+        <div class="tarjeta">
+          <span class="numero">EXPERIENCIA</span>
+          <h3>Trabajo en campo</h3>
           <p>
-            ¿Eres estudiante y buscas realizar tus residencias profesionales?
-            ¿Tienes experiencia en obra eléctrica o mantenimiento industrial?
-            Nos interesa conocer tu perfil.
+            Personal comprometido con la ejecución responsable de las
+            actividades y el cumplimiento de los objetivos del proyecto.
           </p>
-
-<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px; margin:30px 0;">
-
-  <div style="background:white; padding:25px; border-radius:12px; border:1px solid #dce5df;">
-    <h3 style="color:#176b3a;">Ayudante Eléctrico</h3>
-    <p>Apoyo en instalaciones y mantenimiento eléctrico industrial.</p>
-    <a href="#formulario-postulacion" style="display:inline-block;background:#176b3a;color:white;padding:12px 18px;border-radius:6px;text-decoration:none;">Postularme</a>
-  </div>
-
-  <div style="background:white; padding:25px; border-radius:12px; border:1px solid #dce5df;">
-    <h3 style="color:#176b3a;">Ayudante General</h3>
-    <p>Apoyo en actividades operativas y trabajos en campo.</p>
-    <a href="#formulario-postulacion" style="display:inline-block;background:#176b3a;color:white;padding:12px 18px;border-radius:6px;text-decoration:none;">Postularme</a>
-  </div>
-
-  <div style="background:white; padding:25px; border-radius:12px; border:1px solid #dce5df;">
-    <h3 style="color:#176b3a;">Especialista Eléctrico</h3>
-    <p>Participación en trabajos eléctricos especializados.</p>
-    <a href="#formulario-postulacion" style="display:inline-block;background:#176b3a;color:white;padding:12px 18px;border-radius:6px;text-decoration:none;">Postularme</a>
-  </div>
-
-</div>
-
-          <a
-            class="boton boton-verde"
-            href="#formulario-postulacion"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Consultar oportunidades
-          </a>
         </div>
+
+        <div class="tarjeta">
+          <span class="numero">COMPROMISO</span>
+          <h3>Calidad y seguridad</h3>
+          <p>
+            Planeación, orden y atención a las medidas de seguridad
+            aplicables durante los trabajos.
+          </p>
+        </div>
+
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="seccion contacto" id="contacto">
-      <div class="contenedor">
-        <h2 class="titulo">Hablemos de tu proyecto</h2>
+  <section class="seccion fondo-gris" id="vacantes">
+    <div class="contenedor">
 
-        <p>
-          Proyectos Técnicos e Ingeniería Aplicada MP, S.A. de C.V.
+      <h2 class="titulo">Vacantes y residencias profesionales</h2>
+
+      <p class="introduccion">
+        En <strong>Proyectos Técnicos e Ingeniería Aplicada MP, S.A. de C.V.</strong>
+        buscamos personas comprometidas con la seguridad, la calidad y el
+        trabajo en equipo. Selecciona una oportunidad y completa el formulario
+        para registrar tu interés.
+      </p>
+
+      <div class="lista-vacantes">
+
+        <article class="tarjeta-vacante">
+          <h3>Ayudante Eléctrico</h3>
+          <p><strong>Área:</strong> Obra eléctrica</p>
+          <p><strong>Escolaridad:</strong> Secundaria terminada</p>
+          <a class="boton boton-verde elegir-vacante"
+             href="#formulario-postulacion"
+             data-vacante="Ayudante Eléctrico">
+            Postularme
+          </a>
+        </article>
+
+        <article class="tarjeta-vacante">
+          <h3>Ayudante General</h3>
+          <p><strong>Área:</strong> Apoyo en obra</p>
+          <p><strong>Experiencia:</strong> 2 años</p>
+          <a class="boton boton-verde elegir-vacante"
+             href="#formulario-postulacion"
+             data-vacante="Ayudante General">
+            Postularme
+          </a>
+        </article>
+
+        <article class="tarjeta-vacante">
+          <h3>Ayudante Instrumentista</h3>
+          <p><strong>Área:</strong> Instrumentación industrial</p>
+          <p><strong>Escolaridad:</strong> Secundaria terminada</p>
+          <a class="boton boton-verde elegir-vacante"
+             href="#formulario-postulacion"
+             data-vacante="Ayudante Instrumentista">
+            Postularme
+          </a>
+        </article>
+
+        <article class="tarjeta-vacante">
+          <h3>Especialista Eléctrico</h3>
+          <p><strong>Área:</strong> Obra eléctrica</p>
+          <p>Participación en trabajos eléctricos especializados.</p>
+          <a class="boton boton-verde elegir-vacante"
+             href="#formulario-postulacion"
+             data-vacante="Especialista Eléctrico">
+            Postularme
+          </a>
+        </article>
+
+        <article class="tarjeta-vacante">
+          <h3>Residencias profesionales</h3>
+          <p><strong>Dirigido a:</strong> Estudiantes de ingeniería</p>
+          <p>Participa en proyectos y adquiere experiencia profesional.</p>
+          <a class="boton boton-verde elegir-vacante"
+             href="#formulario-postulacion"
+             data-vacante="Residencias profesionales">
+            Postularme
+          </a>
+        </article>
+
+      </div>
+
+      <div class="nota">
+        <strong>Importante:</strong>
+        Este formulario es la interfaz inicial del sitio. Para recibir y
+        almacenar postulaciones, currículums y documentos de forma privada,
+        debe conectarse a un servicio de recepción o servidor seguro.
+        Esta versión de GitHub Pages no envía ni guarda los datos.
+      </div>
+
+      <form class="formulario" id="formulario-postulacion">
+
+        <h2 class="titulo">Formulario de postulación</h2>
+
+        <p class="introduccion">
+          Completa tus datos para preparar tu solicitud.
+          Los campos marcados con * son obligatorios.
         </p>
 
-        <p>Minatitlán, Veracruz, México</p>
+        <div class="campos">
 
-        <p>Teléfono: 922 372 0156</p>
+          <div class="campo">
+            <label for="nombre">Nombre completo *</label>
+            <input id="nombre" name="nombre" required
+                   autocomplete="name"
+                   placeholder="Nombre y apellidos">
+          </div>
 
-        <a
-          class="boton"
-          href="#formulario-postulacion"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Contactar por WhatsApp
-        </a>
-      </div>
-    </section>
-  </main>
+          <div class="campo">
+            <label for="correo">Correo electrónico *</label>
+            <input id="correo" name="correo" type="email"
+                   required autocomplete="email"
+                   placeholder="tucorreo@ejemplo.com">
+          </div>
 
-  <footer>
-    <p>
-      © 2026 Proyectos Técnicos e Ingeniería Aplicada MP, S.A. de C.V.
-    </p>
-    <p>Obra eléctrica e ingeniería aplicada.</p>
-  </footer>
+          <div class="campo">
+            <label for="telefono">Teléfono de contacto *</label>
+            <input id="telefono" name="telefono" type="tel"
+                   required autocomplete="tel"
+                   placeholder="Número de teléfono">
+          </div>
+
+          <div class="campo">
+            <label for="vacante-elegida">Vacante de interés *</label>
+            <select id="vacante-elegida" name="vacante" required>
+              <option value="">Selecciona una opción</option>
+              <option>Ayudante Eléctrico</option>
+              <option>Ayudante General</option>
+              <option>Ayudante Instrumentista</option>
+              <option>Especialista Eléctrico</option>
+              <option>Residencias profesionales</option>
+              <option>Otra oportunidad</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="escolaridad">Escolaridad *</label>
+            <select id="escolaridad" name="escolaridad" required>
+              <option value="">Selecciona tu escolaridad</option>
+              <option>Secundaria</option>
+              <option>Preparatoria / Bachillerato</option>
+              <option>Carrera técnica</option>
+              <option>Licenciatura / Ingeniería en curso</option>
+              <option>Licenciatura / Ingeniería terminada</option>
+              <option>Otra</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="experiencia">Años de experiencia relacionados *</label>
+            <select id="experiencia" name="experiencia" required>
+              <option value="">Selecciona una opción</option>
+              <option>Sin experiencia</option>
+              <option>Menos de 1 año</option>
+              <option>1 a 2 años</option>
+              <option>3 a 5 años</option>
+              <option>Más de 5 años</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="disponibilidad">
+              ¿Tienes disponibilidad para trabajar en campo? *
+            </label>
+            <select id="disponibilidad" name="disponibilidad" required>
+              <option value="">Selecciona una opción</option>
+              <option>Sí</option>
+              <option>No</option>
+              <option>Depende del proyecto</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="residencia">¿Buscas residencia profesional?</label>
+            <select id="residencia" name="residencia">
+              <option value="">Selecciona una opción</option>
+              <option>Sí</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <div class="campo completo">
+            <label for="perfil">
+              Cuéntanos brevemente sobre tu experiencia o perfil
+            </label>
+            <textarea id="perfil" name="perfil"
+              placeholder="Experiencia, habilidades, carrera que estudias o semestre..."></textarea>
+          </div>
+
+          <div class="campo completo">
+            <label for="cv">Adjuntar CV (opcional)</label>
+            <input id="cv" name="cv" type="file"
+                   accept=".pdf,.doc,.docx">
+            <span class="ayuda">
+              El archivo se selecciona en tu dispositivo, pero esta página
+              todavía no lo envía ni lo almacena.
+            </span>
+          </div>
+
+          <div class="campo completo">
+            <label>
+              <input type="checkbox" required
+                     style="width:auto; margin-right:8px">
+              Confirmo que los datos proporcionados son correctos y autorizo
+              que se utilicen para dar seguimiento a mi postulación. *
+            </label>
+          </div>
+
+          <div class="campo completo">
+            <button class="boton boton-verde" type="submit">
+              Revisar mi postulación
+            </button>
+            <p class="ayuda">
+              Al presionar el botón, solo se validarán los campos en esta
+              página. No se transmitirá información.
+            </p>
+          </div>
+
+        </div>
+
+        <p id="mensaje-formulario"
+           role="status"
+           aria-live="polite"
+           style="margin-top:15px; font-weight:bold; color:var(--verde-oscuro)">
+        </p>
+
+      </form>
+    </div>
+  </section>
+
+  <section class="seccion contacto" id="contacto">
+    <div class="contenedor">
+      <h2 class="titulo">Hablemos de tu proyecto</h2>
+
+      <p>
+        <strong>Proyectos Técnicos e Ingeniería Aplicada MP, S.A. de C.V.</strong>
+      </p>
+
+      <p>Minatitlán, Veracruz, México</p>
+      <p>Teléfono: 922 372 0156</p>
+
+      <p>
+        Para oportunidades laborales, utiliza el formulario de postulación
+        de esta página.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Proyectos Técnicos e Ingeniería Aplicada MP, S.A. de C.V.</p>
+  <p>Obra eléctrica e ingeniería aplicada.</p>
+</footer>
+
+<script>
+  document.querySelectorAll(".elegir-vacante").forEach(function(enlace) {
+    enlace.addEventListener("click", function() {
+      document.getElementById("vacante-elegida").value =
+        enlace.dataset.vacante;
+    });
+  });
+
+  document.getElementById("formulario-postulacion")
+    .addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      document.getElementById("mensaje-formulario").textContent =
+        "Los campos están completos. Esta versión del sitio aún no envía " +
+        "la postulación; antes de publicarla como formulario real, hay que " +
+        "conectarla a un servicio seguro.";
+    });
+</script>
 
 </body>
 </html>
-
