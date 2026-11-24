@@ -877,9 +877,19 @@
         flex-direction: column;
       }
     }
+    /* CORRECCIÓN: mostrar el contenido de la página */
+.reveal {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+section,
+main,
+.container {
+  visibility: visible;
+}
   </style>
 </head>
-
 <body>
 
   <!-- ENCABEZADO: ÚNICAMENTE APARECE VACANTES -->
