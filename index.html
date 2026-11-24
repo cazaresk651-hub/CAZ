@@ -1219,8 +1219,6 @@
     loading="lazy">
   </iframe>
 </div>
-          <h3>Formulario de postulación</h3>
-
           <p class="form-description">
             Los campos marcados con * son obligatorios.
           </p>
@@ -1463,16 +1461,6 @@
         item.classList.add("visible");
       });
     }
-
-    /* AVISO DEL FORMULARIO DE PRUEBA */
-
-    document.getElementById("application-form")
-      .addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        document.getElementById("form-message").textContent =
-          "El formulario de diseño funciona, pero aún no envía la solicitud. " +
-          "Es necesario conectarlo a un servicio seguro antes de recibir postulaciones.";
       });
   </script>
 
