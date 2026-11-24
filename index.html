@@ -686,15 +686,18 @@
 
     /* ANIMACIONES */
 
+    /* El contenido permanece visible incluso si falla JavaScript o el móvil bloquea animaciones. */
     .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity .7s ease, transform .7s ease;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      transition: opacity .25s ease, transform .25s ease;
     }
 
     .reveal.visible {
       opacity: 1;
-      transform: translateY(0);
+      visibility: visible;
+      transform: none;
     }
 
     @keyframes imageZoom {
@@ -717,8 +720,9 @@
       }
 
       .reveal {
-        opacity: 1;
-        transform: none;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
       }
     }
 
@@ -877,19 +881,9 @@
         flex-direction: column;
       }
     }
-    /* CORRECCIÓN: mostrar el contenido de la página */
-.reveal {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-}
-section,
-main,
-.container {
-  visibility: visible;
-}
   </style>
 </head>
+
 <body>
 
   <!-- ENCABEZADO: ÚNICAMENTE APARECE VACANTES -->
@@ -1200,159 +1194,19 @@ main,
       </div>
     </section>
 
-    <!-- FORMULARIO DE POSTULACIÓN -->
+    <!-- FORMULARIO DE POSTULACIÓN CONECTADO A GOOGLE APPS SCRIPT -->
 
     <section class="section" id="formulario-postulacion">
-      <div class="container application-layout">
-
-        <div class="application-intro reveal">
-          <span class="eyebrow">Da el siguiente paso</span>
-
-          <h2>Queremos conocer tu talento.</h2>
-
-          <p>
-            Completa tus datos y selecciona la oportunidad que te interesa.
-            La información de este formulario es un prototipo visual y aún
-            no se transmite a la empresa.
-          </p>
-
-          <a class="btn btn-secondary" href="#vacantes">
-            Volver a las vacantes ↑
-          </a>
-        </div>
-
-        <div class="application-form reveal" id="application-form">
-  <iframe
-    title="Formulario de postulación de MP Proyectos"
-    src="https://script.google.com/macros/s/AKfycbyJyu4nAjVzOfNX6cp5mFe_o-g1RmxNZa5KtCuXyQslLDrp1trchPD1Hon-eVzt-Awqxw/exec"
-    style="display:block;width:100%;min-height:1200px;border:0;border-radius:22px;background:#fff;"
-    loading="lazy">
-  </iframe>
-</div>
-          <p class="form-description">
-            Los campos marcados con * son obligatorios.
-          </p>
-
-          <div class="form-grid">
-
-            <div class="field">
-              <label for="nombre">Nombre completo *</label>
-              <input id="nombre" name="nombre"
-                     autocomplete="name" required>
-            </div>
-
-            <div class="field">
-              <label for="correo">Correo electrónico *</label>
-              <input id="correo" name="correo"
-                     type="email" autocomplete="email" required>
-            </div>
-
-            <div class="field">
-              <label for="telefono">Teléfono de contacto *</label>
-              <input id="telefono" name="telefono"
-                     type="tel" autocomplete="tel" required>
-            </div>
-
-            <div class="field">
-              <label for="vacante-elegida">Vacante de interés *</label>
-              <select id="vacante-elegida" name="vacante" required>
-                <option value="">Selecciona una vacante</option>
-                <option>Ayudante Eléctrico</option>
-                <option>Ayudante General</option>
-                <option>Ayudante Instrumentista</option>
-                <option>Especialista Eléctrico</option>
-                <option>Residencias profesionales</option>
-                <option>Otra oportunidad</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="escolaridad">Escolaridad *</label>
-              <select id="escolaridad" name="escolaridad" required>
-                <option value="">Selecciona tu escolaridad</option>
-                <option>Secundaria</option>
-                <option>Preparatoria / Bachillerato</option>
-                <option>Carrera técnica</option>
-                <option>Ingeniería en curso</option>
-                <option>Ingeniería terminada</option>
-                <option>Otra</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="experiencia">Experiencia *</label>
-              <select id="experiencia" name="experiencia" required>
-                <option value="">Selecciona una opción</option>
-                <option>Sin experiencia</option>
-                <option>Menos de 1 año</option>
-                <option>1 a 2 años</option>
-                <option>3 a 5 años</option>
-                <option>Más de 5 años</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="disponibilidad">Disponibilidad para campo *</label>
-              <select id="disponibilidad" name="disponibilidad" required>
-                <option value="">Selecciona una opción</option>
-                <option>Sí</option>
-                <option>No</option>
-                <option>Depende del proyecto</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="residencia">¿Buscas residencia profesional?</label>
-              <select id="residencia" name="residencia">
-                <option value="">Selecciona una opción</option>
-                <option>Sí</option>
-                <option>No</option>
-              </select>
-            </div>
-
-            <div class="field full">
-              <label for="perfil">Experiencia, habilidades o programas que manejas</label>
-              <textarea id="perfil" name="perfil"
-                        placeholder="Describe brevemente tu perfil, habilidades, carrera o experiencia."></textarea>
-            </div>
-
-            <div class="field full">
-              <label for="cv">Currículum (opcional)</label>
-              <input id="cv" name="cv" type="file"
-                     accept=".pdf,.doc,.docx">
-              <span class="form-note">
-                El archivo solo se selecciona en tu dispositivo; esta página
-                todavía no lo envía ni lo guarda.
-              </span>
-            </div>
-
-            <div class="field full">
-              <label class="consent">
-                <input type="checkbox" required>
-                <span>
-                  Confirmo que los datos proporcionados son correctos y autorizo
-                  su uso para dar seguimiento a mi postulación. *
-                  Antes de usar el formulario real, la empresa deberá proporcionar
-                  su aviso de privacidad.
-                </span>
-              </label>
-            </div>
-
-            <div class="field full">
-              <button class="btn btn-primary" type="submit">
-                Revisar mi solicitud ↗
-              </button>
-
-              <p id="form-message" role="status" aria-live="polite"></p>
-            </div>
-
-          </div>
-        </form>
-
+      <div class="container">
+        <iframe
+          title="Formulario de postulación de MP Proyectos"
+          src="https://script.google.com/macros/s/AKfycbyJyu4nAjVzOfNX6cp5mFe_o-g1RmxNZa5KtCuXyQslLDrp1trchPD1Hon-eVzt-Awqxw/exec"
+          style="display:block; width:100%; height:1550px; max-width:100%; border:0; border-radius:22px; background:#fff;"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
       </div>
     </section>
-
-  </main>
 
   <!-- PIE DE PÁGINA SIN ENLACES DE WHATSAPP -->
 
@@ -1389,88 +1243,61 @@ main,
   </footer>
 
   <script>
-    /* CARRUSEL AUTOMÁTICO */
+    /* CARRUSEL: iniciar solo si sus elementos existen */
+    (function () {
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const previousButton = document.getElementById("previous-slide");
+      const nextButton = document.getElementById("next-slide");
+      const carousel = document.getElementById("carousel");
+      let currentSlide = Math.max(0, slides.findIndex(slide => slide.classList.contains("active")));
+      let carouselTimer = null;
 
-    const slides = Array.from(document.querySelectorAll(".slide"));
-    const previousButton = document.getElementById("previous-slide");
-    const nextButton = document.getElementById("next-slide");
-    const carousel = document.getElementById("carousel");
-
-    let currentSlide = 0;
-    let carouselTimer;
-
-    function showSlide(index) {
-      slides[currentSlide].classList.remove("active");
-      currentSlide = (index + slides.length) % slides.length;
-      slides[currentSlide].classList.add("active");
-    }
-
-    function nextSlide() {
-      showSlide(currentSlide + 1);
-    }
-
-    function startCarousel() {
-      clearInterval(carouselTimer);
-      carouselTimer = setInterval(nextSlide, 5000);
-    }
-
-    previousButton.addEventListener("click", function() {
-      showSlide(currentSlide - 1);
+      function showSlide(index) {
+        if (!slides.length) return;
+        slides.forEach(slide => slide.classList.remove("active"));
+        currentSlide = (index + slides.length) % slides.length;
+        slides[currentSlide].classList.add("active");
+      }
+      function startCarousel() {
+        if (slides.length < 2) return;
+        clearInterval(carouselTimer);
+        carouselTimer = setInterval(() => showSlide(currentSlide + 1), 5000);
+      }
+      if (previousButton) previousButton.addEventListener("click", () => { showSlide(currentSlide - 1); startCarousel(); });
+      if (nextButton) nextButton.addEventListener("click", () => { showSlide(currentSlide + 1); startCarousel(); });
+      if (carousel) {
+        carousel.addEventListener("mouseenter", () => clearInterval(carouselTimer));
+        carousel.addEventListener("mouseleave", startCarousel);
+      }
       startCarousel();
-    });
+    })();
 
-    nextButton.addEventListener("click", function() {
-      nextSlide();
-      startCarousel();
-    });
-
-    carousel.addEventListener("mouseenter", function() {
-      clearInterval(carouselTimer);
-    });
-
-    carousel.addEventListener("mouseleave", startCarousel);
-
-    startCarousel();
-
-    /* SELECCIONAR VACANTE Y BAJAR AL FORMULARIO */
-
-    const vacancySelect = document.getElementById("vacante-elegida");
-
-    document.querySelectorAll(".choose-vacancy").forEach(function(button) {
-      button.addEventListener("click", function() {
-        vacancySelect.value = button.dataset.vacancy;
-
-        document.getElementById("formulario-postulacion")
-          .scrollIntoView({ behavior: "smooth" });
-
-        document.getElementById("nombre").focus({
-          preventScroll: true
-        });
+    /* Las vacantes llevan al formulario integrado de Google Apps Script.
+       No intentamos acceder a los campos internos del iframe porque está en otro dominio. */
+    document.querySelectorAll(".choose-vacancy").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const formSection = document.getElementById("formulario-postulacion");
+        if (formSection) formSection.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
 
-    /* ANIMACIONES AL DESPLAZARSE */
-
-    const revealItems = document.querySelectorAll(".reveal");
-
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-
-      revealItems.forEach(function(item) {
-        observer.observe(item);
-      });
-    } else {
-      revealItems.forEach(function(item) {
-        item.classList.add("visible");
-      });
-    }
+    /* Revelar animaciones si está disponible; el CSS mantiene el contenido visible de todos modos. */
+    (function () {
+      const revealItems = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.05 });
+        revealItems.forEach(item => observer.observe(item));
+      } else {
+        revealItems.forEach(item => item.classList.add("visible"));
+      }
+    })();
   </script>
 
 </body>
